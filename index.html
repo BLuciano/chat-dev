@@ -8,6 +8,7 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Dev Chat</title>
         <link href="css/styles.min.css" rel="stylesheet">
+        <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -32,17 +33,110 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navMenu">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="about.html">About</a></li>
+                        <li><a href="#">About</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rooms <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">General</a></li>
+                                <li><a href="#">HTLM</a></li>
+                                <li><a href="#">CSS</a></li>
+                                <li><a href="#">JavaScript</a></li>
+                                <li><a href="#">PHP</a></li>
+                                <li><a href="#">Ruby</a></li>
+                                <li><a href="#">Java</a></li>
+                                <li><a href="#">IOS</a></li>
+                                <li><a href="#">Android</a></li>
+                                <li><a href="#">Design</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Log In</a></li>
                     </ul>
                 </div>
             </div>
         </nav>  <!-- End of navigation bar-->
 
         <div class="container">
+            <div class="row">
+                <div class="col-md-3 hidden-xs hidden-sm" id="chat-rooms">
+                    <h2>Chat Rooms</h2>
+                    <hr>
+                    <li><a href="#">General</a></li>
+                    <li><a href="#">HTLM</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="#">PHP</a></li>
+                    <li><a href="#">Ruby</a></li>
+                    <li><a href="#">Java</a></li>
+                    <li><a href="#">IOS</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Design</a></li>
+                </div>
 
+                <div class="col-md-8" id="room-title">
+                    <h1>General Room</h1>
+                </div>
+                
+                <div class="col-md-8 center-block" id="chat-box">
+                    <div id="messages">
+                        <li>
+                            <em>author: </em>this would be where all the messages are sent and displayed by users.
+                            <p>date and time</p>
+                        </li>
+                          <li>
+                            <em>author: </em>this would be where all the messages are sent and displayed by users.
+                            <p>date and time</p>
+                        </li>
+                         <li>
+                            <em>author: </em>this would be where all the messages are sent and displayed by users.
+                            <p>date and time</p>
+                        </li>
+                         <li>
+                            <em>author: </em>this would be where all the messages are sent and displayed by users.
+                            <p>date and time</p>
+                        </li>
+                         <li>
+                            <em>author: </em>this would be where all the messages are sent and displayed by users.
+                            <p>date and time</p>
+                        </li>
+                         <li>
+                            <em>author: </em>this would be where all the messages are sent and displayed by users.
+                            <p>date and time</p>
+                        </li>
+                         <li>
+                            <em>author: </em>this would be where all the messages are sent and displayed by users.
+                            <p>date and time</p>
+                        </li>
+                         <li>
+                            <em>author: </em>this would be where all the messages are sent and displayed by users.
+                            <p>date and time</p>
+                        </li>
+                         <li>
+                            <em>author: </em>this would be where all the messages are sent and displayed by users.
+                            <p>date and time</p>
+                        </li>
+                         <li>
+                            <em>author: </em>this would be where all the messages are sent and displayed by users.
+                            <p>date and time</p>
+                        </li>
+                    </div>
+                </div>
+                <div class="col-md-8" id="message-box">
+                    <form>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="message" placeholder="Say something!">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary">Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
+
         <footer>
+            <hr>
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">

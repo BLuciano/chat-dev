@@ -7391,17 +7391,60 @@ button.close {
 **************************/
 body, html{
 	height: 100%;
+	text-align: center;
 }
+
 .container{
+	max-width: 1250px;
 	min-height: 100%;
 }
 
+li{
+	list-style: none;
+}
+
+
+/*  CHAT BOX / MESSAGE AREA
+**************************/
+
+#chat-rooms{
+	min-height: 100%;
+}
+
+#chat-rooms li{
+	text-align: left;
+	padding: 15px 15px;
+}
+
+#room-title, #chat-rooms h2{
+	margin-bottom: 25px;
+}
+
+#chat-box{
+	height: 400px;
+	overflow: auto;
+	margin: 0 2.5% 25px 2.5%;
+	text-align: left;
+	border: 1px solid black;
+}
+
+#chat-box li{
+	padding-top: 10px;
+}
+
+#message-box input{
+	size: 100px;
+	margin-bottom: 10px;
+}
 
 
 /*     FOOTER  
 **************************/
 footer{
 	max-height: 100%;
+	margin-top: 50px;
+	background-color: #343434;
+	color: #fff;
 }
 
 
