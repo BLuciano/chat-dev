@@ -5,7 +5,7 @@ module.exports = function(grunt){
 		pkg: grunt.file.readJSON('package.json'),
 		uglify:{
 			build:{
-				src: 'src/js/*.js',
+				src: 'src/js/**/*.js',
 				dest: 'js/app.min.js'
 			},
 			dev:{
@@ -15,7 +15,7 @@ module.exports = function(grunt){
 					compress: false,
 					preserveComments: 'all'
 				},
-				src: 'src/js/*.js',
+				src: 'src/js/**/*.js',
 				dest: 'js/app.min.js'
 			}
 		},
@@ -24,7 +24,7 @@ module.exports = function(grunt){
 				files:[{
 					expand: true,
 					cwd: 'css',
-					src: '*.css',
+					src: '/**/*.css',
 					dest: 'css',
 					ext: '.min.css' 
 				}]
@@ -32,17 +32,17 @@ module.exports = function(grunt){
 		},
 		concat:{
 			dev:{
-				src: 'src/css/*.css',
+				src: 'src/css/**/*.css',
 				dest: 'css/styles.min.css'
 			}
 		},
 		watch:{
 			js:{
-				files: ['src/js/*.js'],
+				files: ['src/js/**/*.js'],
 				tasks: ['uglify:dev']
 			},
 			css:{
-				files: ['src/css/*.css'],
+				files: ['src/css/**/*.css'],
 				tasks: ['concat:dev']
 			},
 		}
