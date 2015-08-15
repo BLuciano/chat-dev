@@ -5,6 +5,10 @@ body, html{
 	text-align: center;
 }
 
+body{
+	background-color: #313149;
+}
+
 .container{
 	max-width: 1250px;
 	min-height: 100%;
@@ -15,6 +19,7 @@ li{
 }
 
 
+
 /*  CHAT BOX / MESSAGE AREA
 **************************/
 
@@ -23,12 +28,31 @@ li{
 }
 
 #chat-rooms li{
-	text-align: left;
-	padding: 15px 15px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+#chat-rooms a{
+	display: block;
+	padding: 10px;
+	border-radius: 25px;
+	border: 1px solid #fff;
+}
+
+#chat-rooms a:link, #chat-rooms a:visited{
+	text-decoration: none;
+	background-color: #8585C2;
+	color: #fff;	
+}
+
+#chat-rooms a:hover{
+	background-color: #0F0F2E;
+	text-decoration: none;
 }
 
 #room-title, #chat-rooms h2{
 	margin-bottom: 25px;
+	color: #fff;
 }
 
 #chat-box{
@@ -36,11 +60,29 @@ li{
 	overflow: auto;
 	margin: 0 2.5% 25px 2.5%;
 	text-align: left;
+	background-color: #fff;
 	border: 1px solid black;
+	padding-bottom: 25px;
 }
 
 #chat-box li{
-	padding-top: 10px;
+	border-bottom: 1px solid #333300;
+	padding: 5px 0;
+}
+
+#chat-box li em{
+	color: #B82E00;
+}
+
+#chat-box p{
+	padding: 5px;
+	display: inline-block;
+}
+
+.date{
+	display: block;
+	font-size: .75em;
+	margin-top: -15px;
 }
 
 #message-box input{
