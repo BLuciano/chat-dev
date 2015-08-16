@@ -7408,7 +7408,19 @@ li{
 }
 
 
+/*     FOOTER  
+**************************/
+footer{
+	max-height: 100%;
+	margin-top: 50px;
+	background-color: #343434;
+	color: #fff;
+}
 
+
+
+/*  CHAT ROOM STYLES
+******************************************************************************/
 /*  CHAT BOX / MESSAGE AREA
 **************************/
 
@@ -7437,6 +7449,10 @@ li{
 #chat-rooms a:hover{
 	background-color: #0F0F2E;
 	text-decoration: none;
+}
+
+#chat-rooms .current a{
+	background-color: #0F0F2E;
 }
 
 #room-title, #chat-rooms h2{
@@ -7480,17 +7496,3 @@ li{
 }
 
 
-/*     FOOTER  
-**************************/
-footer{
-	max-height: 100%;
-	margin-top: 50px;
-	background-color: #343434;
-	color: #fff;
-}
-
-
-
-
-/*     MEDIA QUERIES 
-**************************/
