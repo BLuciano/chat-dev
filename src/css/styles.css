@@ -88,9 +88,20 @@ footer{
 	color: #000;
 }
 
-/*#login-wrap div:first-child .col-xs-12 {
+#login-wrap form input:focus{
+	outline: none;
+}
+
+#login-wrap form input:last-child:hover{ 
+	background-color: rgba(0, 0, 0, 1); 
+	color: #fff;
+}
+
+@media screen and (max-width: 767px ){ /*Removes extra height space when forms stack*/
+	#login-wrap div:first-child{
 	height: 250px;
-}*/
+	}
+}
 
 
 /*  CHAT ROOM STYLES
