@@ -16,7 +16,7 @@
         <![endif]-->
     </head>
 
-    <body ng-app="chatApp">
+    <body ng-app="chatApp" ng-controller="mainCtrl">
         <nav class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
@@ -37,16 +37,10 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rooms <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#rooms">General</a></li>
-                                <li><a href="#rooms">HTLM</a></li>
-                                <li><a href="#rooms">CSS</a></li>
-                                <li><a href="#rooms">JavaScript</a></li>
-                                <li><a href="#rooms">PHP</a></li>
-                                <li><a href="#rooms">Ruby</a></li>
-                                <li><a href="#rooms">Java</a></li>
-                                <li><a href="#rooms">IOS</a></li>
-                                <li><a href="#rooms">Android</a></li>
-                                <li><a href="#rooms">Design</a></li>
+                                <li ng-repeat="room in rooms">
+                                    <a href="#/rooms" ng-click="setCurrent(room)">{{room}}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li><a href="">Log In</a></li>

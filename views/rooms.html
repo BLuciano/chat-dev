@@ -3,20 +3,16 @@
         <div class="col-md-3 hidden-xs hidden-sm" id="chat-rooms">
             <h2>Chat Rooms</h2>
             <hr>
-            <li class="current"><a href="#">General</a></li>
-            <li><a href="#">HTLM</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-            <li><a href="#">PHP</a></li>
-            <li><a href="#">Ruby</a></li>
-            <li><a href="#">Java</a></li>
-            <li><a href="#">IOS</a></li>
-            <li><a href="#">Android</a></li>
-            <li><a href="#">Design</a></li>
+            <ul>
+                <li ng-repeat="room in rooms" 
+                ng-class="{current: isActive(room)}">
+                    <a href="" ng-click="setCurrent(room)">{{room}}</a>
+                </li>
+            </ul>
         </div>
 
         <div class="col-md-8" id="room-title">
-            <h1>General</h1>
+            <h1>{{currentRoom}}</h1>
         </div>
         
         <div class="col-md-8 center-block" id="chat-box">

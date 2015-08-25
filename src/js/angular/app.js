@@ -1,20 +1,39 @@
 (function(){
 	"use strict";
 	
-	var app = angular.module('chatApp', ['ngRoute', 'firebase']);
+	angular.module('chatApp', ['ngRoute', 'firebase'])
 
-	app.config(['$routeProvider', function($routeProvider){
+	.controller("mainCtrl", ['$scope', function($scope){
+		$scope.currentRoom = 'General';
+		$scope.rooms = ['General', 'HTLM', 'CSS', 'JavaScript', 'PHP',
+						'Ruby', 'Java', 'IOS', 'Android', 'Design'];
+		
+		//Set the current room the user is in. Used to update the rooms 
+		//links and retrieve database information from the specified room.
+		$scope.setCurrent = function(room){
+			$scope.currentRoom = room;
+		};
+
+		//Set the current selected link on the rooms menu window
+		$scope.isActive = function(room){
+			if($scope.currentRoom === room){
+				return true;
+			}
+		};
+	}]) //end of mainCtrl
+
+	.config(['$routeProvider', function($routeProvider){
 		$routeProvider
 		.when('/', {
 			templateUrl: 'views/login.html',
-			controller: 'loginController'
+			controller: 'loginCtrl'
 		})
 		.when('/rooms', {
 			templateUrl: 'views/rooms.html',
-			controller: 'roomsController'
+			controller: 'roomCtrl'
 		})
 		.otherwise({
 			redirectTo: '/'
 		});
-	}]);
+	}]); 
 })();
