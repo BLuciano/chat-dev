@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-controller="roomCtrl">
     <div class="row">
         <div class="col-md-3 hidden-xs hidden-sm" id="chat-rooms">
             <h2>Chat Rooms</h2>
@@ -17,65 +17,27 @@
         
         <div class="col-md-8 center-block" id="chat-box">
             <div id="messages">
-                <li>
-                    <p><em>author: </em>this would be where all the messages are sent and displayed by users.
-                    </p>
-                    <span class="date">date and time</span>
-                </li>
-                <li>
-                    <p><em>author: </em>this would be where all the messages are sent and displayed by users.
-                    </p>
-                    <span class="date">date and time</span>
-                </li>
-                <li>
-                    <p><em>author: </em>this would be where all the messages are sent and displayed by users.
-                    </p>
-                    <span class="date">date and time</span>
-                </li>
-               <li>
-                    <p><em>author: </em>this would be where all the messages are sent and displayed by users.
-                    </p>
-                    <span class="date">date and time</span>
-                </li>
-                <li>
-                    <p><em>author: </em>this would be where all the messages are sent and displayed by users.
-                    </p>
-                    <span class="date">date and time</span>
-                </li>
-                 <li>
-                    <p><em>author: </em>this would be where all the messages are sent and displayed by users.
-                    </p>
-                    <span class="date">date and time</span>
-                </li>
-                <li>
-                    <p><em>author: </em>this is a text.
-                    </p>
-                    <span class="date">date and time</span>
-                </li>
-                <li>
-                    <p><em>author: </em>this would be where all the messages are sent and displayed by users. This is a longer text to test styles
-                    </p>
-                    <span class="date">date and time</span>
-                </li>
-                <li>
-                    <p><em>author: </em>this would be where all the messages are sent and displayed by users.
-                    </p>
-                    <span class="date">date and time</span>
-                </li>
-                <li>
-                    <p><em>author: </em>this would be where all the messages are sent and displayed by users.
-                    </p>
-                    <span class="date">date and time</span>
-                </li>
+                <ul>
+                    <li ng-repeat="message in messages">
+                        <p><em>{{message.author}}:</em> {{message.text}}</p>
+                        <span class="date">{{message.date}}</span>
+                    <!--
+                    <li>
+                        <p><em>author: </em>this would be where all the messages are sent and displayed by users.
+                        </p>
+                        <span class="date">date and time</span>
+                    </li>
+                    -->
+                </ul>
             </div>
         </div>
         <div class="col-md-8" id="message-box">
-            <form>
+            <form ng-submit="sendMessage()">
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="message" placeholder="Say something!">
+                    <input type="text" class="form-control" id="message" placeholder="Say something!" ng-model="message">
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-primary">Send</button>
+                    <input type="submit" value="Send">
                 </div>
             </form>
         </div>
