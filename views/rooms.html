@@ -20,7 +20,7 @@
                 <ul>
                     <li ng-repeat="message in messages">
                         <p><em>{{message.author}}:</em> {{message.text}}</p>
-                        <span class="date">{{message.date}}</span>
+                        <span class="date">{{message.date | date:"HH:mm:ss"}}</span>
                     <!--
                     <li>
                         <p><em>author: </em>this would be where all the messages are sent and displayed by users.
