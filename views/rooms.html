@@ -6,7 +6,7 @@
             <ul>
                 <li ng-repeat="room in rooms" 
                 ng-class="{current: isActive(room)}">
-                    <a href="" ng-click="setCurrent(room)">{{room}}</a>
+                    <a href="" ng-click="setCurrent(room); reloadPage()">{{room}}</a>
                 </li>
             </ul>
         </div>
@@ -21,13 +21,7 @@
                     <li ng-repeat="message in messages">
                         <p><em>{{message.author}}:</em> {{message.text}}</p>
                         <span class="date">{{message.date | date:"HH:mm:ss"}}</span>
-                    <!--
-                    <li>
-                        <p><em>author: </em>this would be where all the messages are sent and displayed by users.
-                        </p>
-                        <span class="date">date and time</span>
                     </li>
-                    -->
                 </ul>
             </div>
         </div>

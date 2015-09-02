@@ -6,9 +6,16 @@
 			//set link reference to database according to the current room
 			getRoomRef = function(){
 				var ref = new Firebase("https://vivid-inferno-5718.firebaseio.com/Rooms/" + $scope.currentRoom);
-				return $firebaseArray(ref);
-			}
+				return ref;
+			};
 
+			//Loads initial messages each time the room is changed.		
+			loadMessages = function(){
+				var query = getRoomRef().orderByChild("date").limitToLast(50);
+				$scope.messages = $firebaseArray(query);
+			};
+			loadMessages();
+	
 			//Set up a default user until user logic is set up
 			$scope.user = "Luciano";
 
@@ -17,8 +24,7 @@
 				if($scope.message.length === 0){
 
 				} else{
-					$scope.messages = getRoomRef();
-					$scope.messages.$add({
+					$firebaseArray(getRoomRef()).$add({
 						author: $scope.user,
 						text: $scope.message,
 						date: Firebase.ServerValue.TIMESTAMP 

@@ -3,7 +3,7 @@
 	
 	angular.module('chatApp', ['ngRoute', 'firebase'])
 
-	.controller("mainCtrl", ['$scope', function($scope){
+	.controller("mainCtrl", ['$scope', '$route', function($scope, $route){
 		$scope.currentRoom = 'General';
 		$scope.rooms = ['General', 'HTLM', 'CSS', 'JavaScript', 'PHP',
 						'Ruby', 'Java', 'IOS', 'Android', 'Design'];
@@ -19,6 +19,11 @@
 			if($scope.currentRoom === room){
 				return true;
 			}
+		};
+
+		//Reload the page everytime a new room is changed in order to update messages.
+		$scope.reloadPage = function(){
+			$route.reload();
 		};
 	}]) //end of mainCtrl
 

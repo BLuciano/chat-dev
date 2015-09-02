@@ -38,12 +38,12 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li ng-repeat="room in rooms">
-                                    <a href="#/rooms" ng-click="setCurrent(room)">{{room}}
+                                    <a href="#/rooms" ng-click="setCurrent(room); reloadPage()">{{room}}
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="">Log In</a></li>
+                        <li><a href="">Log In</a></li> 
                     </ul>
                 </div>
             </div>
