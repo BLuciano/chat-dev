@@ -2,7 +2,7 @@
 	"use strict";
 	
 	angular.module('chatApp', ['ngRoute', 'firebase'])
-	
+
 	.controller("mainCtrl", ['$scope', function($scope){
 		$scope.currentRoom = 'General';
 		$scope.rooms = ['General', 'HTLM', 'CSS', 'JavaScript', 'PHP',
