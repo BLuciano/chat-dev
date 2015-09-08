@@ -20,7 +20,7 @@
                 <h2>Register</h2>
                 <form ng-submit="createUser()">
                     <input type="email" placeholder="email" ng-model="newEmail" required><br>
-                    <input type="text" name="usernew" placeholder="Username" required><br>
+                    <input type="text" name="usernew" placeholder="Username" ng-model="newUserName" required><br>
                     <input type="password" name="password" placeholder="Password" ng-model="newPassword" required><br>
                     <input type="password" name="passwordrepeat" placeholder="Repeat Password" ng-model="passRepeat" required><br>
                     <input type="submit" value="Create User">
