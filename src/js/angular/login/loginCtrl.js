@@ -2,13 +2,25 @@
 
 angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$firebaseArray',
 	function($scope, $firebaseAuth, $firebaseArray){
+		var ref =  new Firebase("https://vivid-inferno-5718.firebaseio.com/Users");
+		var usernames = new $firebaseArray(ref);
+
 		//when a new user is created, save the username reference in the
 		//database for later use while chatting.  
 		saveUser = function(){
-			var ref =  new Firebase("https://vivid-inferno-5718.firebaseio.com/Users");
 			$firebaseArray(ref).$add({
-				userName: $scope.newUserName.toLowerCase()
+				userName: $scope.newUserName
 			});
+		};
+
+		//Check to see if the username already exists.
+		usernameExists = function(){
+			for(var i = 0; i < usernames.length; i++){
+				if($scope.newUserName === usernames[i].userName){
+					console.log($scope.newUserName);
+					return true;
+				}
+			}
 		};
 
 		//Clear the registration form fields once the form is successfully submitted.
@@ -26,7 +38,10 @@ angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$
 			var loginRef =  new Firebase("https://vivid-inferno-5718.firebaseio.com");
 			
 			//First make sure passwords are matching
-			if($scope.newPassword !== $scope.passRepeat){
+			if(usernameExists()){
+				$scope.error = "Sorry! Username is already taken";
+			}
+			else if($scope.newPassword !== $scope.passRepeat){
 				$scope.error = "Passwords must match";
 			} else {
 				$firebaseAuth(loginRef).$createUser({
@@ -40,6 +55,7 @@ angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$
 					if(error === "undefined"){
 						$scope.error = "Unknown error trying to create user";
 					} else {
+						console.log(error);
 						$scope.error = error;
 					}
 				});
