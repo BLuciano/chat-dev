@@ -6,8 +6,9 @@ angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$
 		var usernames = new $firebaseArray(ref);
 
 		//when a new user is created, save the username reference in the
-		//database for later use while chatting.  
+		//database and set it to user.  
 		saveUser = function(){
+			$scope.setUser($scope.newUserName); 
 			$firebaseArray(ref).$add({
 				userName: $scope.newUserName
 			});
@@ -49,13 +50,13 @@ angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$
 					password: $scope.newPassword
 				}).then(function(userData) {
 					$scope.message = "User successfully created!";
-					saveUser();   //call saveUser once the form successfully passes.
+					$scope.setLog(true);
+					saveUser(); 
 					clearFields();
 				}).catch(function(error){
 					if(error === "undefined"){
 						$scope.error = "Unknown error trying to create user";
 					} else {
-						console.log(error);
 						$scope.error = error;
 					}
 				});

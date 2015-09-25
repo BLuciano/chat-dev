@@ -4,10 +4,19 @@
 	angular.module('chatApp', ['ngRoute', 'firebase'])
 
 	.controller("mainCtrl", ['$scope', '$route', function($scope, $route){
+		$scope.logged = false;
 		$scope.currentRoom = 'General';
 		$scope.rooms = ['General', 'HTLM', 'CSS', 'JavaScript', 'PHP',
 						'Ruby', 'Java', 'IOS', 'Android', 'Design'];
 		
+		$scope.setLog = function(val){
+			$scope.logged = val;
+		};
+
+		$scope.setUser = function(user){
+			$scope.user = user;
+		}
+
 		//Set the current room the user is in. Used to update the rooms 
 		//links and retrieve database information from the specified room.
 		$scope.setCurrent = function(room){

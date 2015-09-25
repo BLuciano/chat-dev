@@ -15,9 +15,6 @@
 				$scope.messages = $firebaseArray(query);
 			};
 			loadMessages();
-	
-			//Set up a default user until user logic is set up
-			$scope.user = "Luciano";
 
 			//Adds a new message to the database when user sends it
 			$scope.sendMessage = function(){

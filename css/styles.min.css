@@ -7569,4 +7569,10 @@ footer{
 	margin-bottom: 10px;
 }
 
+#message-box p {
+	margin: 0 2.5%;
+	padding: 5px;
+	background-color: #fff;
+	color: #000;
+}
 
