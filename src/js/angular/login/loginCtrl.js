@@ -4,13 +4,16 @@ angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$
 	function($scope, $firebaseAuth, $firebaseArray){
 		var ref =  new Firebase("https://vivid-inferno-5718.firebaseio.com/Users");
 		var usernames = new $firebaseArray(ref);
+		$scope.message = null;
+		$scope.error = null;
 
 		//when a new user is created, save the username reference in the
 		//database and set it to user.  
 		saveUser = function(){
 			$scope.setUser($scope.newUserName); 
 			$firebaseArray(ref).$add({
-				userName: $scope.newUserName
+				userName: $scope.newUserName,
+				email: $scope.newEmail
 			});
 		};
 
@@ -26,6 +29,8 @@ angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$
 
 		//Clear the registration form fields once the form is successfully submitted.
 		clearFields = function(){
+			$scope.email ="";
+			$scope.password = "";
 			$scope.newEmail = "";
 			$scope.newPassword = "";
 			$scope.passRepeat = "";
@@ -34,8 +39,7 @@ angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$
 		
 		//create a new user 
 		$scope.createUser = function(){
-			$scope.message = null;
-			$scope.error = null;
+			
 			var loginRef =  new Firebase("https://vivid-inferno-5718.firebaseio.com");
 			
 			//First make sure passwords are matching
@@ -62,5 +66,25 @@ angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$
 				});
 			}
 		}; //end of createUser
+
+		//Log in user
+		$scope.logIn = function(){
+			ref.authWithPassword({
+  				email : $scope.email,
+  				password : $scope.password
+			}, function(error, authData) {
+  				if(error) {
+    				$scope.error = error;
+  				} else {
+  					$scope.setLog(true);
+    				$scope.message = "Logged in successfully!";    				
+    				for(var i = 0; i < usernames.length; i++){
+    					if(usernames[i].email === $scope.email){
+    						$scope.setUser(usernames[i].userName);
+    					}
+    				}
+				}
+			});
+		}
 	}
 ]);
