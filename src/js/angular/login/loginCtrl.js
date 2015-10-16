@@ -3,6 +3,8 @@
 angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$firebaseArray',
 	function($scope, $firebaseAuth, $firebaseArray){
 		var ref =  new Firebase("https://vivid-inferno-5718.firebaseio.com/Users");
+		var loginRef =  new Firebase("https://vivid-inferno-5718.firebaseio.com");
+		var login = $firebaseAuth(loginRef);
 		var usernames = new $firebaseArray(ref);
 		$scope.message = null;
 		$scope.error = null;
@@ -39,9 +41,6 @@ angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$
 		
 		//create a new user 
 		$scope.createUser = function(){
-			
-			var loginRef =  new Firebase("https://vivid-inferno-5718.firebaseio.com");
-			
 			//First make sure passwords are matching
 			if(usernameExists()){
 				$scope.error = "Sorry! Username is already taken";
@@ -49,7 +48,7 @@ angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$
 			else if($scope.newPassword !== $scope.passRepeat){
 				$scope.error = "Passwords must match";
 			} else {
-				$firebaseAuth(loginRef).$createUser({
+				login.$createUser({
 					email: $scope.newEmail,
 					password: $scope.newPassword
 				}).then(function(userData) {
