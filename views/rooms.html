@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="col-md-8" id="message-box">
-            <p ng-show="!logged">Please log in to start chatting!</p>
+            <a href="#login" ng-show="!logged"><p>Please log in to start chatting!</p></a>
             <form ng-show="logged" ng-submit="sendMessage()">
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="message" placeholder="Say something!" ng-model="message">

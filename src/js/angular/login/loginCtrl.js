@@ -77,7 +77,8 @@ angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$
     				$scope.error = error;
   				} else {
   					$scope.setLog(true);
-    				$scope.message = "Logged in successfully!";    				
+    				$scope.message = "Logged in successfully!"; 
+    				clearFields();  				
     				for(var i = 0; i < usernames.length; i++){
     					if(usernames[i].email === $scope.email){
     						$scope.setUser(usernames[i].userName);
