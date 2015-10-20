@@ -7395,7 +7395,8 @@ body, html{
 }
 
 body{
-	background-color: #313149;
+	background-color: #bbb;
+	font-family: 'Russo One', sans-serif;
 }
 
 .container{
@@ -7408,8 +7409,20 @@ body{
 	min-height: 100%;
 }
 
+#wrapper{
+	min-height: 100%;
+}
+
 li{
 	list-style: none;
+}
+
+.green{
+	color: #57B0E4;
+}
+
+a:hover{
+	text-decoration: none;
 }
 
 /*    NAV
@@ -7429,24 +7442,30 @@ footer{
 }
 
 
-
-/*  REGISTER/LOGIN PAGE STYLES
+/*  MAIN PAGE
 ******************************************************************************/
-#main-back{
+#topTitle{
+	min-height: 150px;
+	width: auto;
 	background: url(../imgs/code-background.jpg) no-repeat center center fixed;
 	background-size: cover;	
-	margin-bottom: -50px;
+}
+
+#topTitle h1{
+	padding-top: 50px;
+	color: #fff;
+	text-shadow: 5px 5px 3px #111;
+	font-size: 4em;
 }
 
 #main-info{
+	margin-top: 75px;
 	padding-top: 25px; 
-	color: #fff;
 }
 
 #main-info h3{
 	line-height: 1.5;
-	padding-bottom: 25px;
-	
+	padding-bottom: 25px;	
 }
 
 #main-info button{
@@ -7455,6 +7474,7 @@ footer{
 	padding: 10px;
 	border-radius: 10px;
 	margin-bottom: 50px;
+	border: none;
 }
 
 #main-info button:hover{
@@ -7462,6 +7482,14 @@ footer{
 	color: #000;
 	padding: 15px;
 	margin-bottom: 40px;  /*To avoid bottom elements from being pushed down*/
+}
+
+
+/*  REGISTER/LOGIN PAGE STYLES
+******************************************************************************/
+#main-back{	
+	margin-top: 100px;
+	margin-bottom: -50px;
 }
 
 #login-wrap{
@@ -7540,8 +7568,9 @@ footer{
 }
 
 #room-title, #chat-rooms h2{
-	margin-bottom: 25px;
 	color: #fff;
+	margin-bottom: 25px;
+	text-shadow: 4px 4px 3px #222;
 }
 
 #chat-box{

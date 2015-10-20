@@ -7,6 +7,7 @@
         <meta name="Description" CONTENT="Live chat with other developers!">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Dev Chat</title>
+        <link href='https://fonts.googleapis.com/css?family=Russo+One' rel='stylesheet' type='text/css'>
         <link href="css/styles.min.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,6 +18,14 @@
     </head>
 
     <body ng-app="chatApp" ng-controller="mainCtrl">
+        <div id="wrapper">
+        <div class="container-fluid" id="topTitle">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h1><span class="green">D</span>ev <span class="green">C</span>hat</h1>
+                </div>
+            </div>
+        </div>
         <nav class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
@@ -26,8 +35,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#login">
-                        <em>Dev Chat</em>
+                    <a class="navbar-brand" href="#landing">
+                        <em class="green">DC</em>
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="navMenu">
@@ -50,7 +59,7 @@
         </nav>  <!-- End of navigation bar-->
 
         <div ng-view></div>
-
+    </div>
         <footer>
             <hr>
             <div class="container">
