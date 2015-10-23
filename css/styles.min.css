@@ -7405,8 +7405,11 @@ body{
 }
 
 .container-fluid{
-	margin-top: -20px;
 	min-height: 100%;
+}
+
+hr{
+	margin-top: 0;
 }
 
 #wrapper{
@@ -7431,12 +7434,17 @@ a:hover{
 	text-align: center;
 }
 
+.navbar{
+	margin-bottom: 0;
+}
+
 
 /*     FOOTER  
 **************************/
 footer{
+	margin: 0;
+
 	max-height: 100%;
-	margin-top: 50px;
 	background-color: #343434;
 	color: #fff;
 }
@@ -7458,14 +7466,21 @@ footer{
 	font-size: 4em;
 }
 
+#view{
+	background: url(../imgs/main-back.png) no-repeat center center fixed;
+	background-size: cover;
+	padding-top: 50px;
+	padding-bottom: 75px;
+}
+
 #main-info{
-	margin-top: 75px;
-	padding-top: 25px; 
+	padding-top: 100px; 
 }
 
 #main-info h3{
 	line-height: 1.5;
-	padding-bottom: 25px;	
+	padding-bottom: 25px;
+	color: #fff;	
 }
 
 #main-info button{
@@ -7487,12 +7502,9 @@ footer{
 
 /*  REGISTER/LOGIN PAGE STYLES
 ******************************************************************************/
-#main-back{	
-	margin-top: 100px;
-	margin-bottom: -50px;
-}
 
 #login-wrap{
+	padding-top: 100px;
 	margin-bottom: 50px;
 }
 
@@ -7549,22 +7561,21 @@ footer{
 	display: block;
 	padding: 10px;
 	border-radius: 25px;
-	border: 1px solid #fff;
 }
 
 #chat-rooms a:link, #chat-rooms a:visited{
 	text-decoration: none;
-	background-color: #8585C2;
-	color: #fff;	
+	background-color: #000;
+	color: #337ab7;	
 }
 
 #chat-rooms a:hover{
-	background-color: #0F0F2E;
+	background-color: #fff;
 	text-decoration: none;
 }
 
 #chat-rooms .current a{
-	background-color: #0F0F2E;
+	background-color: #fff;
 }
 
 #room-title, #chat-rooms h2{
@@ -7613,5 +7624,10 @@ footer{
 	padding: 5px;
 	background-color: #fff;
 	color: #000;
+}
+
+#message-box p:hover{
+	background-color: #000;
+	color: #fff;
 }
 
