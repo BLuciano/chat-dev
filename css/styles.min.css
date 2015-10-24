@@ -7408,6 +7408,14 @@ body{
 	min-height: 100%;
 }
 
+.text-success{
+	color: #00FF00;
+} 
+
+.text-danger{
+	color: #FF1919;
+}
+
 hr{
 	margin-top: 0;
 }
