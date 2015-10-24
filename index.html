@@ -51,8 +51,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li ng-show="!logged"><a href="#login">Log In</a></li>
-                        <li ng-show="logged"><a ng-click="setLog(false)" href="">Log Out</a></li> 
+                        <li ng-hide="authData"><a href="#login">Log In</a></li>
+                        <li ng-show="authData"><a ng-click="auth.$unauth()" href="">Log Out</a></li> 
                     </ul>
                 </div>
             </div>

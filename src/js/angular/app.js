@@ -2,20 +2,25 @@
 	"use strict";
 	
 	angular.module('chatApp', ['ngRoute', 'firebase'])
+	.service("auth", ['$firebaseAuth', function($firebaseAuth){
+		var loginRef =  new Firebase("https://vivid-inferno-5718.firebaseio.com");
+		return $firebaseAuth(loginRef);
+	}])
 
-	.controller("mainCtrl", ['$scope', '$route', function($scope, $route){
-		$scope.logged = false;
+	.controller("mainCtrl", ['$scope', '$route', 'auth', function($scope, $route, auth){
 		$scope.currentRoom = 'General';
 		$scope.rooms = ['General', 'HTLM', 'CSS', 'JavaScript', 'PHP',
 						'Ruby', 'Java', 'IOS', 'Android', 'Design'];
 		
-		$scope.setLog = function(val){
-			$scope.logged = val;
-		};
+		$scope.auth = auth;
+		$scope.auth.$onAuth(function(authData){
+			$scope.authData = authData;
+		});
 
 		$scope.setUser = function(user){
 			$scope.user = user;
-		}
+			console.log($scope.user);
+		};
 
 		//Set the current room the user is in. Used to update the rooms 
 		//links and retrieve database information from the specified room.
@@ -40,7 +45,7 @@
 		$routeProvider
 		.when('/', {
 			templateUrl: 'views/landing.html',
-			controller: 'loginCtrl'
+			controller: 'mainCtrl'
 		})
 		.when('/login', {
 			templateUrl: 'views/login.html',

@@ -1,4 +1,4 @@
- <div class="container-fluid" id="main-back" ng-controller="loginCtrl">
+ <div class="container-fluid" ng-controller="loginCtrl">
     <div class="container">
         <div class="col-xs-12">
                 <p class="text-success" ng-if="message">{{message}}</p>
@@ -7,7 +7,7 @@
         <div class="row" id="login-wrap">
             <div class="col-sm-6 col-md-4 col-md-offset-2 login">
                 <h2>User Log In</h2>
-                <form ng-submit="logIn()">
+                <form ng-submit="logUser()">
                     <input type="email" name="email" ng-model="email" placeholder="email" required><br>
                     <input type="password" name="password" ng-model="password" placeholder="Password" required><br>
                     <input type="submit" value="Log In">
@@ -23,7 +23,6 @@
                     <input type="submit" value="Create User">
                 </form>
             </div>
-            
         </div>          
     </div>
 </div>

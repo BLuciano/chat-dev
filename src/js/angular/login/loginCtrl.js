@@ -1,90 +1,114 @@
 "use strict";
 
-angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', '$firebaseArray',
-	function($scope, $firebaseAuth, $firebaseArray){
-		var ref =  new Firebase("https://vivid-inferno-5718.firebaseio.com/Users");
-		var loginRef =  new Firebase("https://vivid-inferno-5718.firebaseio.com");
-		var login = $firebaseAuth(loginRef);
-		var usernames = new $firebaseArray(ref);
-		$scope.message = null;
-		$scope.error = null;
+angular.module('chatApp').factory("login", [ '$firebaseArray', 
+	function( $firebaseArray){
+		var userRef =  new Firebase("https://vivid-inferno-5718.firebaseio.com/Users");
+		var users = new $firebaseArray(userRef);
 
-		//when a new user is created, save the username reference in the
-		//database and set it to user.  
-		saveUser = function(){
-			$scope.setUser($scope.newUserName); 
-			$firebaseArray(ref).$add({
-				userName: $scope.newUserName,
-				email: $scope.newEmail
-			});
-		};
+		return{
+			//Adds new user to database on creation.
+			saveUser: function(name, email){
+				users.$add({
+				userName: name,
+				email: email
+				});
+			},
 
-		//Check to see if the username already exists.
-		usernameExists = function(){
-			for(var i = 0; i < usernames.length; i++){
-				if($scope.newUserName === usernames[i].userName){
-					console.log($scope.newUserName);
-					return true;
+			//Check to see if the username already exists.
+			usernameExists : function(name){
+				for(var i = 0; i < users.length; i++){
+					if(name === users[i].userName){
+						return true;
+					}
 				}
-			}
-		};
+			},
 
-		//Clear the registration form fields once the form is successfully submitted.
+			findUser : function(email){
+				for(var i = 0; i < users.length; i++){
+    				if(users[i].email === email){
+    					return users[i].userName;
+    				}
+    			}
+    		}
+		};
+}]);
+
+
+angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', 'login', 
+	function($scope, $firebaseAuth, login){
+		var loginRef =  new Firebase("https://vivid-inferno-5718.firebaseio.com");
+		var ref = $firebaseAuth(loginRef);
+		
 		clearFields = function(){
-			$scope.email ="";
+			$scope.email = "";
 			$scope.password = "";
 			$scope.newEmail = "";
 			$scope.newPassword = "";
 			$scope.passRepeat = "";
 			$scope.newUserName = "";
-		}
-		
+		};
+
+		//log in user
+		$scope.logUser = function(email, pass, user){
+			loginRef.authWithPassword({
+  				email : email || $scope.email,
+  				password : pass || $scope.password
+			}, function(error, authData) {
+  				if(error) {
+  					$scope.message = "";
+    				switch (error.code) {
+      					case "INVALID_EMAIL":
+        					$scope.error = "Email is invalid";
+        					break;
+      					case "INVALID_PASSWORD":
+        					$scope.error = "password is incorrect";
+        					break;
+      					case "INVALID_USER":
+        					$scope.error = "Error: please check your email";
+        					break;
+      					default:
+        					$scop.error = "Unknown error logging user in";
+    				}
+  				} else {
+  					$scope.error = "";
+    				$scope.message = "Logged in successfully!"; 			
+    				$scope.setUser(user || login.findUser($scope.email));
+    				clearFields();
+				}
+			});
+		}; //end of LogUser
+
 		//create a new user 
 		$scope.createUser = function(){
 			//First make sure passwords are matching
-			if(usernameExists()){
+			if(login.usernameExists($scope.newUserName)){
 				$scope.error = "Sorry! Username is already taken";
 			}
 			else if($scope.newPassword !== $scope.passRepeat){
 				$scope.error = "Passwords must match";
 			} else {
-				login.$createUser({
+				ref.$createUser({
 					email: $scope.newEmail,
 					password: $scope.newPassword
 				}).then(function(userData) {
+					$scope.error = "";
 					$scope.message = "User successfully created!";
-					$scope.setLog(true);
-					saveUser(); 
-					clearFields();
+					login.saveUser($scope.newUserName, $scope.newEmail);
+					$scope.logUser($scope.newEmail, $scope.newPassword, $scope.newUserName);
 				}).catch(function(error){
-					if(error === "undefined"){
-						$scope.error = "Unknown error trying to create user";
-					} else {
-						$scope.error = error;
-					}
-				});
-			}
-		}; //end of createUser
-
-		//Log in user
-		$scope.logIn = function(){
-			ref.authWithPassword({
-  				email : $scope.email,
-  				password : $scope.password
-			}, function(error, authData) {
-  				if(error) {
-    				$scope.error = error;
-  				} else {
-  					$scope.setLog(true);
-    				$scope.message = "Logged in successfully!"; 
-    				clearFields();  				
-    				for(var i = 0; i < usernames.length; i++){
-    					if(usernames[i].email === $scope.email){
-    						$scope.setUser(usernames[i].userName);
-    					}
+					$scope.message = "";
+					switch (error.code) {
+      					case "EMAIL_TAKEN":
+       						$scope.error = "Sorry! Email is already taken";
+        					break;
+      					case "INVALID_EMAIL":
+        					$scope.error = "Please enter a valid email";
+        					break;
+      					default:
+        					$scope.error = "Unknown error trying to create user";
     				}
-				}
-			});
-		}
+				}); 
+			}
+		}; //end of createUser	
 	}
 ]);
