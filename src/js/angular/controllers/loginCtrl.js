@@ -1,39 +1,5 @@
 "use strict";
 
-angular.module('chatApp').factory("login", [ '$firebaseArray', 
-	function( $firebaseArray){
-		var userRef =  new Firebase("https://vivid-inferno-5718.firebaseio.com/Users");
-		var users = new $firebaseArray(userRef);
-
-		return{
-			//Adds new user to database on creation.
-			saveUser: function(name, email){
-				users.$add({
-				userName: name,
-				email: email
-				});
-			},
-
-			//Check to see if the username already exists.
-			usernameExists : function(name){
-				for(var i = 0; i < users.length; i++){
-					if(name === users[i].userName){
-						return true;
-					}
-				}
-			},
-
-			findUser : function(email){
-				for(var i = 0; i < users.length; i++){
-    				if(users[i].email === email){
-    					return users[i].userName;
-    				}
-    			}
-    		}
-		};
-}]);
-
-
 angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', 'login', 
 	function($scope, $firebaseAuth, login){
 		var loginRef =  new Firebase("https://vivid-inferno-5718.firebaseio.com");
@@ -72,7 +38,6 @@ angular.module('chatApp').controller("loginCtrl", ['$scope', '$firebaseAuth', 'l
   				} else {
   					$scope.error = "";
     				$scope.message = "Logged in successfully!"; 			
-    				$scope.setUser(user || login.findUser($scope.email));
     				clearFields();
 				}
 			});

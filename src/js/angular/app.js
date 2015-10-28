@@ -2,24 +2,39 @@
 	"use strict";
 	
 	angular.module('chatApp', ['ngRoute', 'firebase'])
-	.service("auth", ['$firebaseAuth', function($firebaseAuth){
-		var loginRef =  new Firebase("https://vivid-inferno-5718.firebaseio.com");
-		return $firebaseAuth(loginRef);
-	}])
 
-	.controller("mainCtrl", ['$scope', '$route', 'auth', function($scope, $route, auth){
+	.controller("mainCtrl", ['$scope', '$route', '$firebaseArray', '$firebaseObject', 'auth', 
+		function($scope, $route, $firebaseArray, $firebaseObject, auth){
 		$scope.currentRoom = 'General';
 		$scope.rooms = ['General', 'HTLM', 'CSS', 'JavaScript', 'PHP',
 						'Ruby', 'Java', 'IOS', 'Android', 'Design'];
 		
+		var userRef =  new Firebase("https://vivid-inferno-5718.firebaseio.com/Users");
+		var users = new $firebaseArray(userRef);				
+		var findUser = function(email){
+			for(var i = 0; i < users.length; i++){
+    			if(users[i].email === email){
+    				var user = users[i].userName;
+    				return user;
+    			}
+    		}
+    	}
+
 		$scope.auth = auth;
 		$scope.auth.$onAuth(function(authData){
 			$scope.authData = authData;
+			if(authData){
+				/*Wait for the user data to be loaded before using it. 
+				Usedfor initial page load to automatically set up cached logged users.*/
+				var obj = $firebaseObject(userRef);
+				obj.$loaded().then(function(){
+				$scope.setUser(findUser(authData.password.email));
+			});
+			}
 		});
 
 		$scope.setUser = function(user){
 			$scope.user = user;
-			console.log($scope.user);
 		};
 
 		//Set the current room the user is in. Used to update the rooms 
