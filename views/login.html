@@ -1,9 +1,9 @@
  <div class="container-fluid" ng-controller="loginCtrl">
     <div class="container">
-        <div class="col-xs-12">
+        <div class="col-xs-12 hidden-xs">
                 <p class="text-success" ng-if="message">{{message}}</p>
                 <p class="text-danger" ng-if="error">{{error}}</p>
-            </div>
+        </div>
         <div class="row" id="login-wrap">
             <div class="col-sm-6 col-md-4 col-md-offset-2 login">
                 <h2>User Log In</h2>
@@ -12,7 +12,11 @@
                     <input type="password" name="password" ng-model="password" placeholder="Password" required><br>
                     <input type="submit" value="Log In">
                 </form>
+                <p class="text-success visible-xs-block" ng-if="message">{{message}}</p>
+                <p class="text-danger visible-xs-block" ng-if="error">{{error}}</p>
             </div>
+                
+            
             <div class="col-sm-6 col-md-4 login">
                 <h2>Register</h2>
                 <form ng-submit="createUser()">
